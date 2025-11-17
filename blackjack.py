@@ -31,7 +31,7 @@ class owner():
         deck.pop(0)
         dealer.append(deck[0])
         deck.pop(0)
-
+        
         playerhitstand = input("Do you wish to hit or stand?")
 
         if playerhitstand == "Hit" or playerhitstand == "hit":

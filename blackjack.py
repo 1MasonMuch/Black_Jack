@@ -1,6 +1,6 @@
 import random
 import json
-cards = open("./movies.json", encoding="utf8")
+cards = open("cards.json", encoding="utf8")
 data = json.load(cards)
 
 class owner():
@@ -32,7 +32,18 @@ class owner():
         dealer.append(deck[0])
         deck.pop(0)
         
-        playerhitstand = input("Do you wish to hit or stand?")
-
-        if playerhitstand == "Hit" or playerhitstand == "hit":
-            
+        print(player)
+        print(dealer)
+        
+        while sum(playertotal) <= 21:
+            playerhitstand = input("Do you wish to hit or stand?")
+            if playerhitstand == "Yes" or playerhitstand == "yes":
+                player.append(deck[0])
+                deck.pop(0)
+                for i in cards:
+                    if i["rank"] in player:
+                        playertotal.append(i["value"])
+                    if sum(playertotal) > 21 and "Ace" in player:
+                        for i in playertotal:
+                            if i[playertotal] == 11:
+                                i[playertotal]

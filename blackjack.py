@@ -46,4 +46,5 @@ class owner():
                     if sum(playertotal) > 21 and "Ace" in player:
                         for i in playertotal:
                             if i[playertotal] == 11:
-                                i[playertotal]
+                                i[playertotal] = 1
+                                

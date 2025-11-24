@@ -18,6 +18,7 @@ class owner():
         dealertotal = []
         playerhitstand = ""
         dealerhitstand = ""
+        
 
         deck = []
         for i in cards:
@@ -34,7 +35,12 @@ class owner():
         
         print(player)
         print(dealer)
-        
+        for i in cards:
+            if i["rank"] in player:
+                playertotal.append(i["value"])
+            if sum(playertotal) > 21:
+                print("You bust")
+
         while sum(playertotal) <= 21:
             playerhitstand = input("Do you wish to hit or stand?")
             if playerhitstand == "Yes" or playerhitstand == "yes":
@@ -47,4 +53,4 @@ class owner():
                         for i in playertotal:
                             if i[playertotal] == 11:
                                 i[playertotal] = 1
-                                
+                print(f"Your cards: {player}")

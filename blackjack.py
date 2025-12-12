@@ -77,4 +77,83 @@ def blackjack():
     # Loop continues as long as the player hasn't busted
     while player_score <= 21:
         
-        if player_score == 21 and len(player)
+        if player_score == 21 and len(player) == 2:
+            # Player has a Blackjack (21 on first two cards)
+            print("🤩 Blackjack! Player wins immediately (unless dealer also has Blackjack).")
+            # Break the player's turn loop
+            break
+        
+        # Check if player needs another card
+        if player_score > 21:
+            print(f"Your final hand: {player} (Score: {player_score})")
+            print("BUST! You went over 21.")
+            break
+            
+        # Get player decision
+        choice = input("Type 'h' to **H**it, or 's' to **S**tand: ").lower()
+        
+        if choice == 'h':
+            deal_card(player, deck)
+            player_score = calculate_score(player, data)
+            print(f"Your hand: {player}")
+            print(f"Your current score: {player_score}")
+        elif choice == 's':
+            print("You stand.")
+            break
+        else:
+            print("Invalid choice, please type 'h' or 's'.")
+            
+        # Re-check score after hitting
+        if player_score > 21:
+            print(f"Your final hand: {player} (Score: {player_score})")
+            print("BUST! You went over 21.")
+            
+    # If the player has busted, the game ends here for the player.
+    if player_score > 21:
+        print("\nDealer wins (Player Busted).")
+        return # End the game
+
+    # --- Dealer's Turn (Only if Player hasn't busted) ---
+
+    print(f"\n--- Dealer's Turn ---")
+    print(f"Dealer's full hand: {dealer} (Score: {dealer_score})")
+
+    # Dealer hits until score is 17 or higher
+    while dealer_score < 17:
+        print("Dealer hits (score < 17)...")
+        deal_card(dealer, deck)
+        dealer_score = calculate_score(dealer, data)
+        print(f"Dealer's hand: {dealer}")
+        print(f"Dealer's current score: {dealer_score}")
+    
+    if dealer_score > 21:
+        print("Dealer BUSTS! You win!")
+        return # End the game
+    
+    print("Dealer stands (score >= 17).")
+
+    
+
+    print("\n--- Final Results ---")
+    print(f"Your final score: {player_score}")
+    print(f"Dealer's final score: {dealer_score}")
+
+    if player_score > dealer_score:
+        print("🎉 You Win!")
+    elif player_score < dealer_score:
+        print("Dealer Wins!")
+    else:
+        print("Push (It's a Tie)!")
+
+# --- Game Start ---
+if __name__ == "__main__":
+    
+    while True:
+        blackjack()
+        
+        # Ask to play again
+        play_again = input("\nDo you want to play again? Type 'y' or 'n': ").lower()
+        if play_again != 'y':
+            break
+
+    print("Thanks for playing!")
